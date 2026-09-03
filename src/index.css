@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ds-white: #FFFFFF;
+  --ds-abyss: #00171F;
+  --ds-deep: #003459;
+  --ds-ocean: #007EA7;
+  --ds-sky: #00A8E8;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #00171F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #003459;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 168, 232, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #007EA7;
+  box-shadow: 0 0 10px #00A8E8;
+}
+
+/* Lenis Smooth Scroll Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Base Body Styles */
+body {
+  background-color: var(--ds-abyss);
+  color: var(--ds-white);
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(0, 52, 89, 0.35);
+  border: 1px solid rgba(0, 168, 232, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-panel-interactive {
+  background: rgba(0, 52, 89, 0.3);
+  border: 1px solid rgba(0, 168, 232, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-interactive:hover {
+  background: rgba(0, 52, 89, 0.5);
+  border-color: rgba(0, 168, 232, 0.45);
+  box-shadow: 0 0 25px rgba(0, 168, 232, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.glass-pill {
+  background: rgba(0, 52, 89, 0.45);
+  border: 1px solid rgba(0, 168, 232, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Neumorphic Dark UI Classes */
+.neu-button {
+  background: linear-gradient(145deg, #002b47, #00171F);
+  box-shadow: 4px 4px 12px #000e13, -4px -4px 12px #003657;
+  border: 1px solid rgba(0, 168, 232, 0.12);
+  transition: all 0.2s ease;
+}
+
+.neu-button:hover {
+  box-shadow: 2px 2px 8px #000e13, -2px -2px 8px #003657, 0 0 15px rgba(0, 168, 232, 0.3);
+  border-color: rgba(0, 168, 232, 0.4);
+}
+
+.neu-button:active {
+  box-shadow: inset 3px 3px 8px #000e13, inset -3px -3px 8px #003657;
+}
+
+.neu-inset {
+  background: #00151c;
+  box-shadow: inset 4px 4px 10px #000a0e, inset -4px -4px 10px #002230;
+  border: 1px solid rgba(0, 168, 232, 0.08);
+}
+
+/* Grid & Grid Scaffolding */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 168, 232, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 168, 232, 0.05) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 126, 167, 0.18) 0%, rgba(0, 23, 31, 0.8) 70%, #00171F 100%);
+}
+
+/* Constructivist Diagonal Lines */
+.construct-line {
+  background: linear-gradient(90deg, rgba(0, 168, 232, 0.6) 0%, rgba(0, 126, 167, 0.2) 50%, transparent 100%);
+}
+
+/* Scanline Overlay for HUD */
+.scanlines {
+  background: linear-gradient(
+    rgba(0, 23, 31, 0) 50%, 
+    rgba(0, 168, 232, 0.03) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.01),
+    rgba(0, 255, 0, 0.005),
+    rgba(0, 0, 255, 0.01)
+  );
+  background-size: 100% 3px, 6px 100%;
+}
+
+/* Glowing text utilities */
+.glow-text-sky {
+  text-shadow: 0 0 16px rgba(0, 168, 232, 0.65);
+}
+
+.glow-text-ocean {
+  text-shadow: 0 0 18px rgba(0, 126, 167, 0.5);
+}
+
+/* Pulse animation utility */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 168, 232, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 168, 232, 0.7), inset 0 0 15px rgba(0, 168, 232, 0.3);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
