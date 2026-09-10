@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, X, Minimize2, Maximize2, CornerDownLeft } from 'lucide-react';
+import { Terminal, X, Minimize2, Maximize2, CornerDownLeft, ExternalLink } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 interface TerminalModalProps {
@@ -28,7 +28,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
       command: 'sysinfo --verbose',
       output: (
         <div className="space-y-1 text-xs font-mono text-ds-white/80">
-          <div className="text-ds-sky font-bold">AKSHITH KERNEL OS [v2.4.0-cloud-release]</div>
+          <div className="text-ds-sky font-bold">AKSHITH KERNEL OS [v2.5.0-cloud-release]</div>
           <div>User: <span className="text-ds-sky">akshith</span>@<span className="text-emerald-400">hyd-node-01</span></div>
           <div>Specialization: <span className="text-ds-white">Computer Science Engineering (Cloud Computing)</span></div>
           <div>Status: <span className="text-emerald-400">ONLINE [99.98% uptime]</span></div>
@@ -60,9 +60,6 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
-        else {
-          // Open terminal handled by parent if needed
-        }
       }
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -94,7 +91,9 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
               <div><span className="text-ds-sky font-semibold">about</span> — Bio &amp; systems manifesto</div>
               <div><span className="text-ds-sky font-semibold">systems</span> — Inspect technical architecture</div>
               <div><span className="text-ds-sky font-semibold">aria</span> — ARIA AI agent status</div>
-              <div><span className="text-ds-sky font-semibold">kapi</span> — Kápi Cartel coffee brand</div>
+              <div><span className="text-rose-400 font-semibold">kapi</span> — Kápi Cartel coffee &amp; live link</div>
+              <div><span className="text-emerald-400 font-semibold">photo</span> / <span className="text-emerald-400 font-semibold">vsco</span> — Photography &amp; Visuals</div>
+              <div><span className="text-cyan-400 font-semibold">iem</span> / <span className="text-cyan-400 font-semibold">simgot</span> — Simgot EW200 acoustic lab</div>
               <div><span className="text-ds-sky font-semibold">skills</span> — Backend &amp; Cloud stack</div>
               <div><span className="text-ds-sky font-semibold">contact</span> — Reach out / credentials</div>
               <div><span className="text-ds-sky font-semibold">matrix</span> — Digital rain cascade</div>
@@ -142,11 +141,63 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
         break;
 
       case 'kapi':
+      case 'coffee':
+        output = (
+          <div className="space-y-1.5 text-xs font-mono text-ds-white/80">
+            <div className="text-rose-400 font-bold">KÁPI CARTEL — PREMIUM SOUTH INDIAN COLD BREW:</div>
+            <div>Origin: Chikmagalur &amp; Coorg Arabica Beans</div>
+            <div>Art Direction: Moody Editorial Noir + AI Video Pipelines</div>
+            <div className="pt-1">
+              <a
+                href="https://kapicartel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-rose-400 hover:text-rose-300 underline font-bold inline-flex items-center gap-1"
+              >
+                <span>Live Brand Site: https://kapicartel.com</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        );
+        break;
+
+      case 'photo':
+      case 'photography':
+      case 'vsco':
+        output = (
+          <div className="space-y-1.5 text-xs font-mono text-ds-white/80">
+            <div className="text-emerald-400 font-bold">VISUAL CRAFT &amp; VSCO ARCHIVE:</div>
+            <div>Focus: Editorial Object Cinematography, Horology Macro, Brutalist Geometry</div>
+            <div>Aesthetics: Low-Key Contrast, Subtle Analog Film Grain, Dynamic Light Control</div>
+            <div>Presets: VSCO A6, HB2 Noir, M5, B1 Monolith</div>
+            <div className="pt-1">
+              <a
+                href={PORTFOLIO_DATA.photography.vscoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:text-emerald-300 underline font-bold inline-flex items-center gap-1"
+              >
+                <span>VSCO Journal: {PORTFOLIO_DATA.photography.vscoUrl}</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        );
+        break;
+
+      case 'iem':
+      case 'simgot':
+      case 'audio':
+      case 'audiophile':
         output = (
           <div className="space-y-1 text-xs font-mono text-ds-white/80">
-            <div className="text-rose-400 font-bold">KÁPI CARTEL — PREMIUM SOUTH INDIAN COLD BREW:</div>
-            <div>Origin: Chikmagalur &amp; Coorg Arabica</div>
-            <div>Art Direction: Moody Editorial Noir + AI Video Pipelines</div>
+            <div className="text-cyan-400 font-bold">AUDIOPHILE &amp; IEM ACOUSTIC LAB:</div>
+            <div>Daily Driver: <span className="text-ds-white font-semibold">Simgot EW200 ("Maze")</span></div>
+            <div>Transducer: <span className="text-cyan-300">10mm Dual-Magnetic Circuit &amp; Dual-Cavity SCP Diaphragm</span></div>
+            <div>Housing: All-Metal Mirror Finish Zinc Alloy Chassis</div>
+            <div>Acoustic Tuning: Harman 2016 Target + Simgot Classic Target (+6.5dB Sub-bass, 3kHz Pinna Gain)</div>
+            <div>Signal Chain: High-Purity Silver-Plated OFC &bull; 24-Bit/192kHz Lossless FLAC</div>
           </div>
         );
         break;
@@ -159,6 +210,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
             <div>• <span className="text-ds-white font-semibold">AI &amp; Automation:</span> Python, Flask, Playwright, Asyncio, Agentic Workflows</div>
             <div>• <span className="text-ds-white font-semibold">Hardware:</span> Raspberry Pi, PCB Micro Soldering, Battery Restorations</div>
             <div>• <span className="text-ds-white font-semibold">Frontend:</span> React, TypeScript, Tailwind CSS, Three.js, GSAP</div>
+            <div>• <span className="text-ds-white font-semibold">Visual Craft:</span> Editorial Cinematography, Color Grading, VSCO Film Emulation</div>
           </div>
         );
         break;
@@ -297,7 +349,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDownInput}
-                placeholder="type 'help', 'systems', 'about'..."
+                placeholder="type 'help', 'kapi', 'photo', 'iem', 'systems'..."
                 className="flex-1 bg-transparent text-ds-white placeholder:text-ds-white/30 focus:outline-none font-mono"
               />
               <button

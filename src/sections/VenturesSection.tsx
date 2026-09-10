@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { SectionHeader } from '../components/SectionHeader';
 import { CoffeeScene } from '../scenes/CoffeeScene';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
-import { Coffee, Flame, Video, Play, TrendingUp, Sparkles, Radio, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Coffee, Flame, Video, Play, TrendingUp, Sparkles, Radio, CheckCircle2, ArrowRight, ExternalLink, Globe } from 'lucide-react';
 
 interface VenturesSectionProps {
   onPlayClick?: () => void;
@@ -37,9 +37,13 @@ export const VenturesSection: React.FC<VenturesSectionProps> = ({ onPlayClick })
             {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_12px_#D90429]" />
+                <span className="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_12px_#D90429] animate-pulse" />
                 <span className="font-mono text-xs font-bold text-rose-400 tracking-widest uppercase">
                   DIRECT-TO-CONSUMER COFFEE ARCHITECTURE
+                </span>
+                <span className="ml-auto hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-950/60 border border-rose-800/40 text-[10px] font-mono text-rose-300">
+                  <Globe className="w-3 h-3 text-rose-400" />
+                  <span>kapicartel.com</span>
                 </span>
               </div>
 
@@ -66,14 +70,31 @@ export const VenturesSection: React.FC<VenturesSectionProps> = ({ onPlayClick })
                 ))}
               </div>
 
-              {/* Origin Metrics */}
-              <div className="grid grid-cols-3 gap-3 pt-4 border-t border-rose-900/30">
-                {kapiData.metrics.map((m, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-rose-950/30 border border-rose-900/30">
-                    <span className="text-[10px] font-mono text-rose-300/60 block uppercase">{m.label}</span>
-                    <span className="text-xs sm:text-sm font-bold text-white font-mono mt-0.5 block">{m.value}</span>
-                  </div>
-                ))}
+              {/* Action Hub & Origin Metrics */}
+              <div className="pt-4 border-t border-rose-900/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="grid grid-cols-2 gap-3 w-full sm:w-auto">
+                  {kapiData.metrics.map((m, i) => (
+                    <div key={i} className="p-3 rounded-xl bg-rose-950/30 border border-rose-900/30 min-w-[130px]">
+                      <span className="text-[10px] font-mono text-rose-300/60 block uppercase">{m.label}</span>
+                      <span className="text-xs sm:text-sm font-bold text-white font-mono mt-0.5 block">{m.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Direct Link to Live Brand Site: kapicartel.com */}
+                <a
+                  href="https://kapicartel.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onPlayClick}
+                  data-cursor="button"
+                  data-cursor-text="KÁPI CARTEL"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2.5 shadow-[0_0_25px_rgba(217,4,41,0.4)] hover:shadow-[0_0_35px_rgba(217,4,41,0.6)] group"
+                >
+                  <Globe className="w-4 h-4 text-rose-200 group-hover:rotate-12 transition-transform" />
+                  <span>Visit kapicartel.com</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-rose-200" />
+                </a>
               </div>
             </div>
 

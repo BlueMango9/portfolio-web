@@ -20,10 +20,30 @@ export interface VentureItem {
   accentColor: string;
   bgGradient: string;
   description: string;
+  websiteUrl?: string;
   pillars: string[];
   metrics: { label: string; value: string }[];
   visualType: 'coffee' | 'media';
   links?: { label: string; url: string }[];
+}
+
+export interface PhotoItem {
+  id: string;
+  title: string;
+  category: 'Editorial & Objects' | 'Horology Macro' | 'Architecture' | 'Moody Noir';
+  aspectRatio: 'aspect-square' | 'aspect-[4/5]' | 'aspect-[16/9]';
+  imageSrc?: string;
+  fallbackGradient: string;
+  accentColor: string;
+  vscoPreset: string;
+  exif: {
+    camera: string;
+    focalLength: string;
+    aperture: string;
+    shutter: string;
+    iso: string;
+  };
+  description: string;
 }
 
 export interface InterestDomain {
@@ -33,7 +53,7 @@ export interface InterestDomain {
   details: string;
   badge: string;
   tags: string[];
-  interactiveType: 'watch' | 'telemetry' | 'finance' | 'athletics' | 'polymath';
+  interactiveType: 'watch' | 'telemetry' | 'audiophile' | 'finance' | 'athletics' | 'polymath';
 }
 
 export const PORTFOLIO_DATA = {
@@ -47,7 +67,7 @@ export const PORTFOLIO_DATA = {
     timeZone: "Asia/Kolkata (IST)",
     bio: [
       "First-year Computer Science Engineering student at SRM Institute of Science and Technology, specializing in Cloud Computing. Based in Hyderabad. I build the way I think — in systems: backend logic, distributed infrastructure, and the quiet architecture underneath things that look simple on the surface.",
-      "Outside the stack, I run a small constellation of ventures — a coffee brand, two content channels, and a habit of pulling things apart (hardware, watches, ideas) to understand how they're actually built. I'm drawn to precision — in code, in mechanical engineering, in a well-regulated watch movement — and I'd rather spend twice as long getting something right than ship something forgettable."
+      "Outside the stack, I run a constellation of ventures — Kápi Cartel (cold brew coffee brand), algorithmic audience channels, a photography archive exploring editorial object framing and low-key film aesthetics, and an obsession with mechanical watches and audiophile in-ear monitors (IEMs)."
     ],
     status: {
       availability: "Open for high-impact engineering & venture collaborations",
@@ -55,9 +75,11 @@ export const PORTFOLIO_DATA = {
       uptime: "99.98% operational"
     },
     socials: {
-      github: "https://github.com",
+      github: "https://github.com/BlueMango9",
       linkedin: "https://linkedin.com",
       x: "https://x.com",
+      vsco: "https://vsco.co",
+      kapicartel: "https://kapicartel.com",
       youtube: "https://youtube.com",
       instagram: "https://instagram.com",
       email: "akshith.contact@gmail.com"
@@ -75,7 +97,7 @@ export const PORTFOLIO_DATA = {
       number: "02",
       title: "Radical Precision",
       subtitle: "Horological discipline in software",
-      description: "Whether regulating a mechanical balance wheel or tuning a parallel Playwright scraper, precision is non-negotiable. I'd rather spend twice as long getting the architecture right than ship something fragile."
+      description: "Whether regulating a mechanical balance wheel, tuning dynamic driver damping in an IEM, or configuring parallel Playwright scrapers, precision is non-negotiable."
     },
     {
       number: "03",
@@ -185,6 +207,7 @@ export const PORTFOLIO_DATA = {
       tagline: "Premium South Indian Cold Coffee Architecture",
       accentColor: "#D90429",
       bgGradient: "from-[#2B090E] to-[#00171F]",
+      websiteUrl: "https://kapicartel.com",
       description: "A premium cold coffee brand built around South Indian coffee bean origins. The identity leans dark, moody, and high-contrast — deep reds and blacks — art-directed with editorial-style object cinematography rather than conventional ad formats, and increasingly powered by AI-generated video and social content.",
       pillars: [
         "Single-Origin Chikmagalur & Coorg Arabica Beans",
@@ -193,11 +216,14 @@ export const PORTFOLIO_DATA = {
         "Direct-to-Consumer Packaging & Narrative"
       ],
       metrics: [
+        { label: "Live Domain", value: "kapicartel.com" },
         { label: "Origin", value: "South India" },
-        { label: "Roast Profile", value: "Dark Velvet Cold Brew" },
-        { label: "Visual System", value: "Cinematic Noir" }
+        { label: "Roast Profile", value: "Dark Velvet Cold Brew" }
       ],
-      visualType: "coffee"
+      visualType: "coffee",
+      links: [
+        { label: "kapicartel.com", url: "https://kapicartel.com" }
+      ]
     },
     {
       id: "content-channels",
@@ -221,6 +247,151 @@ export const PORTFOLIO_DATA = {
     }
   ] as VentureItem[],
 
+  photography: {
+    vscoUrl: "https://vsco.co",
+    headline: "Visual Craft & Editorial Cinematography",
+    tagline: "Framing the world through moody contrast, analog grain, and horological precision.",
+    bio: "Photography is my visual study of light, geometry, and mechanical textures. Whether capturing the brushed stainless steel of a watch case, the rich crimson crema of cold brew, or brutalist city geometry in Hyderabad, I apply the same disciplined attention to composition as I do to software architecture.",
+    skills: [
+      {
+        title: "Editorial Object Cinematography",
+        description: "Dramatic side-lighting, rim highlights, and product framing for brands like Kápi Cartel."
+      },
+      {
+        title: "Low-Key & Noir Film Grading",
+        description: "Curating deep blacks, soft highlight rolloffs, and tactile analog film grain profiles."
+      },
+      {
+        title: "Horological Macro Photography",
+        description: "Capturing balance wheel oscillations, jewel bearings, and dial guilloché textures."
+      },
+      {
+        title: "Architectural Perspective & Geometry",
+        description: "Vanishing lines, industrial symmetry, and high-contrast ambient lighting."
+      },
+      {
+        title: "Color Science & Post-Production",
+        description: "Mastering Lightroom curves, VSCO film recipes, and luminance separation."
+      }
+    ],
+    gear: [
+      { item: "Primary Sensor", spec: "4K 60FPS / 48MP Dual-ISO Sensor" },
+      { item: "Prime Glass", spec: "50mm f/1.8 & 28mm Wide Prime" },
+      { item: "Color Matrix", spec: "VSCO Film Emulation / Custom LUTs" },
+      { item: "Lighting", spec: "Directional Diffused Key & Rim Grid" }
+    ],
+    gallery: [
+      {
+        id: "photo-1",
+        title: "Kápi Noir Cold Brew Extraction",
+        category: "Editorial & Objects",
+        aspectRatio: "aspect-[4/5]",
+        imageSrc: "/images/coffee/kapi-bottle.jpg",
+        fallbackGradient: "from-[#200508] via-[#100305] to-[#00171F]",
+        accentColor: "#D90429",
+        vscoPreset: "HB2 // Noir Crimson",
+        exif: {
+          camera: "50mm Prime",
+          focalLength: "50mm",
+          aperture: "f/1.8",
+          shutter: "1/320s",
+          iso: "100"
+        },
+        description: "Dark-field studio lighting highlighting condensation on the Kápi Cartel cold brew bottle."
+      },
+      {
+        id: "photo-2",
+        title: "Tissot PRX Calibre & Balance Wheel",
+        category: "Horology Macro",
+        aspectRatio: "aspect-square",
+        imageSrc: "/images/watches/tissot-prx.jpg",
+        fallbackGradient: "from-[#021b2d] via-[#00171F] to-[#0f172a]",
+        accentColor: "#00A8E8",
+        vscoPreset: "A6 // Clean Metallic",
+        exif: {
+          camera: "Macro Precision",
+          focalLength: "90mm Macro",
+          aperture: "f/2.8",
+          shutter: "1/160s",
+          iso: "200"
+        },
+        description: "Macro capture of the 28,800 VPH escapement and ruby jewel bearing under diffuse cross-light."
+      },
+      {
+        id: "photo-3",
+        title: "Simgot EW200 Mirror Acoustic Shell",
+        category: "Editorial & Objects",
+        aspectRatio: "aspect-[4/5]",
+        imageSrc: "/images/photography/simgot-ew200.jpg",
+        fallbackGradient: "from-[#0f172a] via-[#1e293b] to-[#00171F]",
+        accentColor: "#38bdf8",
+        vscoPreset: "M5 // Moody Steel",
+        exif: {
+          camera: "35mm Prime",
+          focalLength: "35mm",
+          aperture: "f/2.0",
+          shutter: "1/250s",
+          iso: "100"
+        },
+        description: "Specular reflections off the dual-cavity all-metal mirror zinc alloy housing of the Simgot EW200."
+      },
+      {
+        id: "photo-4",
+        title: "Brutalist Lines & Monolithic Void",
+        category: "Architecture",
+        aspectRatio: "aspect-square",
+        imageSrc: "/images/photography/photo-4.jpg",
+        fallbackGradient: "from-[#111827] via-[#00171F] to-[#030712]",
+        accentColor: "#94a3b8",
+        vscoPreset: "B1 // Monolith B&W",
+        exif: {
+          camera: "28mm Ultra-Wide",
+          focalLength: "28mm",
+          aperture: "f/4.0",
+          shutter: "1/500s",
+          iso: "50"
+        },
+        description: "High-contrast geometric vanishing points and concrete shadows in Hyderabad."
+      },
+      {
+        id: "photo-5",
+        title: "Roger Dubuis Skeleton Architecture",
+        category: "Horology Macro",
+        aspectRatio: "aspect-[4/5]",
+        imageSrc: "/images/watches/roger-dubuis.jpg",
+        fallbackGradient: "from-[#170a00] via-[#00171F] to-[#090d16]",
+        accentColor: "#f59e0b",
+        vscoPreset: "C1 // Amber Spectrum",
+        exif: {
+          camera: "Macro Prime",
+          focalLength: "90mm Macro",
+          aperture: "f/3.2",
+          shutter: "1/200s",
+          iso: "160"
+        },
+        description: "Skeletonized bridges, star-burst tourbillon cage, and Geneva seal finishing."
+      },
+      {
+        id: "photo-6",
+        title: "Midnight Noir & Neon Reflections",
+        category: "Moody Noir",
+        aspectRatio: "aspect-square",
+        imageSrc: "/images/photography/photo-6.jpg",
+        fallbackGradient: "from-[#1e0524] via-[#00171F] to-[#080d1a]",
+        accentColor: "#ec4899",
+        vscoPreset: "V1 // Cyber Noir",
+        exif: {
+          camera: "50mm Prime",
+          focalLength: "50mm",
+          aperture: "f/1.4",
+          shutter: "1/80s",
+          iso: "800"
+        },
+        description: "Low-light night photography capturing wet tarmac reflections and cyan-magenta color isolation."
+      }
+    ] as PhotoItem[]
+  },
+
   interests: [
     {
       id: "horology",
@@ -230,6 +401,15 @@ export const PORTFOLIO_DATA = {
       badge: "MECHANICAL PRECISION",
       tags: ["Tissot PRX", "Roger Dubuis", "Automatic Movements", "Tourbillon", "Super-LumiNova"],
       interactiveType: "watch"
+    },
+    {
+      id: "audiophile-iem",
+      title: "Audiophile & IEM Acoustic Engineering",
+      subtitle: "Daily driver: Simgot EW200, Dual-Cavity SCP Diaphragm & Harman Target Tuning",
+      details: "Deep exploration of in-ear monitor (IEM) acoustic design, frequency response tuning, and lossless digital-to-analog conversion. Daily driving the Simgot EW200 ('Maze') with its 10mm Dual-Magnetic Circuit & Dual-Cavity Silicon Crystal Plated (SCP) dynamic driver, tuned to the Harman 2016 Target with precise sub-bass extension and crystal-clear treble resolution.",
+      badge: "ACOUSTIC ENGINEERING",
+      tags: ["Simgot EW200", "Harman 2016 Target", "10mm SCP Diaphragm", "24-bit/192kHz Lossless", "Acoustic Impedance"],
+      interactiveType: "audiophile"
     },
     {
       id: "f1-bmw",

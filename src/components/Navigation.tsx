@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Menu, X, Clock, Compass, ShieldCheck } from 'lucide-react';
+import { Terminal, Menu, X, Clock, Compass, ShieldCheck, Camera } from 'lucide-react';
 import { SoundController } from './SoundController';
 import { formatTimeIST, formatTimeUTC } from '../lib/utils';
 
@@ -16,8 +16,9 @@ const NAV_TABS = [
   { id: 'about', label: 'About', number: '01' },
   { id: 'systems', label: 'Systems', number: '02' },
   { id: 'ventures', label: 'Ventures', number: '03' },
-  { id: 'interests', label: 'Interests', number: '04' },
-  { id: 'contact', label: 'Connect', number: '05' },
+  { id: 'photography', label: 'Visuals', number: '04' },
+  { id: 'interests', label: 'Interests', number: '05' },
+  { id: 'contact', label: 'Connect', number: '06' },
 ];
 
 export const Navigation: React.FC<NavigationProps> = ({
@@ -31,7 +32,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   const [istTime, setIstTime] = useState<string>(formatTimeIST());
   const [scrolled, setScrolled] = useState<boolean>(false);
 
-  // Live clocks for IST and UTC
+  // Live clocks for IST
   useEffect(() => {
     const timer = setInterval(() => {
       setIstTime(formatTimeIST());
@@ -73,13 +74,13 @@ export const Navigation: React.FC<NavigationProps> = ({
     <>
       {/* Top Floating Glass HUD Bar */}
       <header
-        className={`fixed top-0 inset-x-0 z-40 px-4 sm:px-8 py-3 transition-all duration-500 ${
+        className={`fixed top-0 inset-x-0 z-40 px-3 sm:px-8 py-3 transition-all duration-500 ${
           scrolled ? 'py-2.5 backdrop-blur-md' : 'py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Brand Mark & Live Time Scaffolding */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={() => scrollToSection('hero')}
               data-cursor="button"
@@ -120,7 +121,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   onClick={() => scrollToSection(tab.id)}
                   data-cursor="button"
                   data-cursor-text={tab.label.toUpperCase()}
-                  className={`relative px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 ${
                     isActive
                       ? 'text-ds-white font-bold'
                       : 'text-ds-white/60 hover:text-ds-white hover:bg-ds-sky/5'
@@ -133,7 +134,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  <span className="text-[9px] text-ds-sky/80 mr-1.5 opacity-80">{tab.number}</span>
+                  <span className="text-[9px] text-ds-sky/80 mr-1 opacity-80">{tab.number}</span>
                   {tab.label}
                 </button>
               );
@@ -190,7 +191,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-30 pt-20 px-6 pb-8 bg-ds-abyss/95 backdrop-blur-3xl md:hidden flex flex-col justify-between"
           >
-            <div className="flex flex-col gap-2 pt-6">
+            <div className="flex flex-col gap-2 pt-4">
               <span className="font-mono text-xs text-ds-sky/70 tracking-widest uppercase mb-2">
                 INDEX / DIRECTORY
               </span>
@@ -202,9 +203,9 @@ export const Navigation: React.FC<NavigationProps> = ({
                     key={tab.id}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 }}
+                    transition={{ delay: idx * 0.04 }}
                     onClick={() => scrollToSection(tab.id)}
-                    className={`flex items-center justify-between w-full p-4 rounded-xl text-left border min-h-[52px] ${
+                    className={`flex items-center justify-between w-full p-3.5 rounded-xl text-left border min-h-[48px] ${
                       isActive
                         ? 'bg-ds-deep/80 border-ds-sky text-ds-white shadow-glow-subtle'
                         : 'bg-ds-deep/20 border-ds-ocean/20 text-ds-white/70 hover:bg-ds-deep/40'
@@ -212,7 +213,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   >
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-xs text-ds-sky">{tab.number}</span>
-                      <span className="font-display text-lg font-bold uppercase tracking-wider">
+                      <span className="font-display text-base font-bold uppercase tracking-wider">
                         {tab.label}
                       </span>
                     </div>
@@ -227,7 +228,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   setMobileMenuOpen(false);
                   onOpenTerminal();
                 }}
-                className="mt-4 flex items-center justify-center gap-2 w-full p-4 rounded-xl bg-ds-ocean/30 border border-ds-sky/40 text-ds-sky font-mono text-sm uppercase font-bold"
+                className="mt-3 flex items-center justify-center gap-2 w-full p-3.5 rounded-xl bg-ds-ocean/30 border border-ds-sky/40 text-ds-sky font-mono text-xs uppercase font-bold"
               >
                 <Terminal className="w-4 h-4" />
                 <span>Launch Interactive CLI Terminal</span>
@@ -235,7 +236,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             </div>
 
             {/* Mobile Footer Status */}
-            <div className="pt-6 border-t border-ds-ocean/20 flex flex-col gap-2 text-xs font-mono text-ds-white/50">
+            <div className="pt-4 border-t border-ds-ocean/20 flex flex-col gap-2 text-xs font-mono text-ds-white/50">
               <div className="flex items-center justify-between">
                 <span>HYDERABAD IST</span>
                 <span className="text-ds-sky font-semibold">{istTime}</span>

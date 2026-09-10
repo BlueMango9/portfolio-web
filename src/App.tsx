@@ -11,6 +11,7 @@ import { HeroSection } from './sections/HeroSection';
 import { AboutSection } from './sections/AboutSection';
 import { SystemsSection } from './sections/SystemsSection';
 import { VenturesSection } from './sections/VenturesSection';
+import { PhotographySection } from './sections/PhotographySection';
 import { InterestsSection } from './sections/InterestsSection';
 import { ContactSection } from './sections/ContactSection';
 import { SystemProject } from './data/portfolioData';
@@ -85,16 +86,19 @@ export function App() {
           onPlayClick={playClick}
         />
 
-        {/* Section 03: Ventures — Kápi Cartel & Content Channels */}
+        {/* Section 03: Ventures — Kápi Cartel (kapicartel.com) & Content Channels */}
         <VenturesSection onPlayClick={playClick} />
 
-        {/* Section 04: Interests — Horology Inspector, F1/BMW Telemetry & Polymath Grid */}
+        {/* Section 04: Photography & Visuals — VSCO Journal, EXIF Telemetry & Craft Matrix */}
+        <PhotographySection onPlayClick={playClick} />
+
+        {/* Section 05: Interests — Horology, Simgot EW200 IEM Lab, F1 Telemetry & Polymath Grid */}
         <InterestsSection
           onPlayClick={playClick}
           onEngineRev={playEngineRev}
         />
 
-        {/* Section 05: Contact & Direct Dispatch Console */}
+        {/* Section 06: Contact & Direct Dispatch Console */}
         <ContactSection
           onOpenTerminal={() => {
             playClick();
