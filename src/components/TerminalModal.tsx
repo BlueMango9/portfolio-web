@@ -167,18 +167,18 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
       case 'vsco':
         output = (
           <div className="space-y-1.5 text-xs font-mono text-ds-white/80">
-            <div className="text-emerald-400 font-bold">VISUAL CRAFT &amp; VSCO ARCHIVE:</div>
+            <div className="text-emerald-400 font-bold">VISUAL CRAFT &amp; VSCO ARCHIVE (@akshith15):</div>
             <div>Focus: Editorial Object Cinematography, Horology Macro, Brutalist Geometry</div>
             <div>Aesthetics: Low-Key Contrast, Subtle Analog Film Grain, Dynamic Light Control</div>
             <div>Presets: VSCO A6, HB2 Noir, M5, B1 Monolith</div>
             <div className="pt-1">
               <a
-                href={PORTFOLIO_DATA.photography.vscoUrl}
+                href="https://vsco.co/akshith15"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-emerald-400 hover:text-emerald-300 underline font-bold inline-flex items-center gap-1"
               >
-                <span>VSCO Journal: {PORTFOLIO_DATA.photography.vscoUrl}</span>
+                <span>VSCO Journal: https://vsco.co/akshith15</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>

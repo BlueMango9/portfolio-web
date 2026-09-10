@@ -78,7 +78,7 @@ export const PORTFOLIO_DATA = {
       github: "https://github.com/BlueMango9",
       linkedin: "https://linkedin.com",
       x: "https://x.com",
-      vsco: "https://vsco.co",
+      vsco: "https://vsco.co/akshith15",
       kapicartel: "https://kapicartel.com",
       youtube: "https://youtube.com",
       instagram: "https://instagram.com",
@@ -248,7 +248,8 @@ export const PORTFOLIO_DATA = {
   ] as VentureItem[],
 
   photography: {
-    vscoUrl: "https://vsco.co",
+    vscoUrl: "https://vsco.co/akshith15",
+    vscoUsername: "akshith15",
     headline: "Visual Craft & Editorial Cinematography",
     tagline: "Framing the world through moody contrast, analog grain, and horological precision.",
     bio: "Photography is my visual study of light, geometry, and mechanical textures. Whether capturing the brushed stainless steel of a watch case, the rich crimson crema of cold brew, or brutalist city geometry in Hyderabad, I apply the same disciplined attention to composition as I do to software architecture.",
