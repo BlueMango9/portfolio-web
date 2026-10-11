@@ -1,0 +1,435 @@
+/* ============================================
+   ScrollReveal — Unified Continuous Scroll Film
+   ============================================ */
+
+.scrollContainer {
+  position: relative;
+  /* 3 chapters × ~90vh each — tight and punchy */
+  height: 270vh;
+  background: #06060a;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #06060a;
+}
+
+/* Fade to black at the bottom so next section fades in cleanly */
+.sticky::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #06060a);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* Ambient glow in background */
+.ambientGlow {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  opacity: 0.45;
+  transition: background 0.8s ease;
+  z-index: 1;
+}
+
+/* Video stack — all videos absolutely positioned, only active is shown */
+.videoStack {
+  position: absolute;
+  inset: 0;
+  background: #06060a;
+  z-index: 2;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.videoActive {
+  opacity: 1;
+  z-index: 3;
+}
+
+.videoHidden {
+  opacity: 0;
+  z-index: 2;
+}
+
+/* Loading State */
+.loadingState {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 6, 10, 0.92);
+  backdrop-filter: blur(8px);
+  gap: 16px;
+  z-index: 20;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.loadingDots {
+  display: flex;
+  gap: 8px;
+}
+
+.loadingDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+/* Top Bar */
+.topBar {
+  position: absolute;
+  top: 76px;
+  left: 24px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.chapterBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(8, 8, 14, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapterNum {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.chapterTitle {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+/* Chapter dots progress */
+.chapterDots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(8, 8, 14, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapterDot {
+  height: 8px;
+  border-radius: var(--radius-full);
+  transition: width 0.4s var(--ease-spring), background 0.4s ease;
+  flex-shrink: 0;
+}
+
+.scrollHintTop {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(8, 8, 14, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: fadeUpDown 2.5s ease-in-out infinite;
+}
+
+@keyframes fadeUpDown {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Telemetry HUD */
+.telemetryHUD {
+  position: absolute;
+  top: 150px;
+  left: 28px;
+  z-index: 10;
+  background: rgba(8, 8, 14, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  min-width: 180px;
+}
+
+.hudHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hudDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: pulseDot 2s infinite ease-in-out;
+  box-shadow: 0 0 6px currentColor;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.hudMetrics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metricItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 12px;
+}
+
+.metricKey {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.metricVal {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Bottom Milestone Overlay */
+.bottomOverlay {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+  pointer-events: none;
+}
+
+.milestoneCard {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(8, 8, 16, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 22px 28px 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  pointer-events: auto;
+}
+
+.milestoneContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.milestoneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.milestoneTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.progressPct {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.milestoneTitle {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.4px;
+}
+
+.milestoneSub {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Unified timeline bar with 3 segments */
+.timelineBar {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  height: 4px;
+  margin-bottom: 8px;
+}
+
+.timelineSegment {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: visible;
+}
+
+.timelineTrack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.06s linear;
+}
+
+.chapterDividers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.chapterDivider {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0a0a14;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.markerActive {
+  background: #fff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+/* Chapter labels under bar */
+.chapterLabels {
+  display: flex;
+  gap: 4px;
+}
+
+.chapterLabel {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+    top: 64px;
+    gap: 8px;
+  }
+  .scrollHintTop {
+    display: none;
+  }
+  .telemetryHUD {
+    display: none;
+  }
+  .milestoneCard {
+    padding: 16px 18px 14px;
+  }
+  .milestoneTitle {
+    font-size: 16px;
+  }
+  .chapterLabel {
+    font-size: 8px;
+  }
+}

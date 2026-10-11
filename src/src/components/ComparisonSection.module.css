@@ -1,0 +1,190 @@
+.section {
+  padding: 100px 24px;
+  background: #06060a;
+  position: relative;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.head {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+
+.pillIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Card */
+.tableCard {
+  background: rgba(14, 14, 22, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr 1.5fr;
+  padding: 20px 28px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.colFeature {
+  display: flex;
+  align-items: center;
+}
+
+.colCorex {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.corexBadge {
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.colIndustry {
+  display: flex;
+  align-items: center;
+}
+
+/* Body */
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr 1.5fr;
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.2s ease;
+}
+
+.tableRow:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.featureName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.valWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconCheck {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.iconCross {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.crossIcon {
+  width: 13px;
+  height: 13px;
+}
+
+.corexVal {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.industryVal {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 800px) {
+  .tableHeader, .tableRow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px 20px;
+  }
+  .colCorex {
+    padding: 0;
+  }
+}

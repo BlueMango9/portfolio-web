@@ -1,0 +1,44 @@
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: default;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent bar */
+.accentBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
+}
+
+.card:hover .accentBar {
+  opacity: 1;
+}
+
+.value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(250,250,250,0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
